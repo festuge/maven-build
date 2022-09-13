@@ -1,2 +1,1 @@
-# maven-build
-to test maven build
+# maven-etech-application
