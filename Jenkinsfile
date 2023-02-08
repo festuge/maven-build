@@ -6,7 +6,7 @@ pipeline {
   stages{
     stage('1-git-clone'){
       steps{
-        checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'github-id', url: 'https://github.com/festuge/maven-build.git']]])
+        checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'github-id', url: 'https://github.com/etechDevops/etech-mavenApp.git']]])
       }
     }
     stage('2-cleanws'){
@@ -19,7 +19,7 @@ pipeline {
         sh 'mvn package'
       }
     }
-    stage('unittest'){
+      stage('unittest'){
         steps{
             sh 'mvn test'
         }
@@ -27,9 +27,9 @@ pipeline {
     stage('codequality'){
       steps{
         sh 'mvn clean verify sonar:sonar \
-  -Dsonar.projectKey=new-mvn-sonar \
-  -Dsonar.host.url=http://18.233.236.11:9000 \
-  -Dsonar.login=sqp_09ec4419fc91537295519b89ed13285d12c5362f'
+  -Dsonar.projectKey=etech-team4 \
+  -Dsonar.host.url=http://ec2-18-219-85-148.us-east-2.compute.amazonaws.com:9000 \
+  -Dsonar.login=sqp_0aa5df9c74751758200ed82828b1b486f2be853e'
       }
     }
   }
